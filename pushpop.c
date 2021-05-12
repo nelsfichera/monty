@@ -12,7 +12,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n" info.l_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", info.l_number);
 		free_info();
 	}
 	popper = popper->next;
@@ -31,7 +31,7 @@ void pop(stack_t **stack, unsigned int line_number)
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *n_node;
-	void(line_number);
+	(void)line_number;
 
 	n_node = malloc(sizeof(stack_t));
 	if (n_node == NULL)
