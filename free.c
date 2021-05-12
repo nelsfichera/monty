@@ -1,6 +1,10 @@
 #include "monty.h"
 
-void free_list(stack_t **head)
+void free_node(stack_t **stack)
+{
+	free(stack);
+}
+void free_list(stack_t **stack)
 {
 	stack_t *hcopy;
 	stack_t *temp;
