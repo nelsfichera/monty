@@ -53,9 +53,12 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *index0, *index1;
 
 	check = dlistint_len(h);
-	
-	/*needs error handling 
-	 * if (check < 2)*/
+	 
+	if (check < 2)
+	{
+		fprintf(stderr, "L:%d: Stack too short to swap\n", info.l_number);
+		free_info();
+	}
 	
 	index0 = head;
 	index1 = head->next;
