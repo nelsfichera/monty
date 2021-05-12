@@ -9,10 +9,10 @@ void free_list(stack_t **stack)
 	stack_t *hcopy;
 	stack_t *temp;
 
-	if (*head)
+	if (*stack)
 	{
-		hcopy = *head;
-		*head = NULL;
+		hcopy = *stack;
+		*stack = NULL;
 
 		while(hcopy->next)
 		{

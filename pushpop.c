@@ -12,8 +12,8 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", info.l_number);
-		free_info();
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		/* free_node(&stack); */
 	}
 	popper = popper->next;
 	free(*stack);
@@ -28,26 +28,39 @@ void pop(stack_t **stack, unsigned int line_number)
 * @line_number: line count
 * Return: void
 */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, char *n)
 {
 	stack_t *n_node;
-	(void)line_number;
+
+	if (!stack)
+		return;
 
 	n_node = malloc(sizeof(stack_t));
 	if (n_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_info();
+		/* free_list(&stack); */
+		exit(EXIT_FAILURE);
 	}
-	if (isdigit(info.arg[1]) > 0)
+		if (isdigit(n) != 0)
 	{
-		fprintf(stderr, "L%d: usage push integer\n", info.l_number);
-		free_info();
+		fprintf(stderr, "L%d: usage push integer\n", line_number);
+		/* free_list(*stack); */
 	}
 
-	n_node->n = atoi(info.arg[1]);
-	if (info.type == LIFO)
-		add_node_lifo(stack, n_node);
-	else
-		add_node_fifo(stack, n_node);
+	n_node->n = n;
+	n_node->next = *stack;
+	n_node->prev = NULL;
+
+	if (*stack)
+		(*stack)->prev = n_node;
+
+	*stack = n_node;
+
+
+	/** n_node->n = atoi(argv[1]);
+	* if (info.type == LIFO)
+	* add_node_lifo(stack, n_node);
+	* else
+	*	add_node_fifo(stack, n_node); */
 }

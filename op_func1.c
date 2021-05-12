@@ -7,7 +7,7 @@
 * Return: void
 */
 void pall(stack_t **stack, unsigned int line_number)
-{ 
+{
 	/*needs error handling*/
 	int iter;
 	stack_t *node;
@@ -53,21 +53,21 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *index0, *index1;
 
 	check = dlistint_len(h);
-	 
+
 	if (check < 2)
 	{
-		fprintf(stderr, "L:%d: Stack too short to swap\n", info.l_number);
+		fprintf(stderr, "L:%d: Stack too short to swap\n", line_number);
 		free_info();
 	}
-	
-	index0 = head;
+
+	index0 = *stack;
 	index1 = head->next;
 	index0->next = index1->next;
 	index0->prev = index1;
-	
+
 	if (index1->next)
 		index1->next->prev = index0;
-	
+
 	index1->next = index0;
 	index1->prev = NULL;
 	(*stack) = index1;
@@ -83,4 +83,4 @@ void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-}	
+}

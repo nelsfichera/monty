@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int main(int argc, char **argv[])
+int main(int argc, char **argv)
 {
 	int fd, is_push = 0;
 	char *buffer, *token;
@@ -10,12 +10,14 @@ int main(int argc, char **argv[])
 
 	if (argc != 2)
 	{
-		/* usage error and exit */
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
 	fd = open(argv[1], O_RDONLY); /* open with fd */
 	if (fd == -1)
 	{
-		/* can't open error and exit */
+		printf("Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
 	}
 	buffer = malloc(sizeof(char) * 10240);
 	if (!buffer) /* buffer for reading file */
@@ -53,15 +55,16 @@ int main(int argc, char **argv[])
 			}
 			else
 			{
-				/* free dlist */
-				/* print unknown instruction error */
-				/* exit */
+				free_list(&h);
+				printf("L%d: unknown instruction %s\n", line_count, token);
+				exit(EXIT_FAILURE);
 			}
 		}
 		line_count++;
 		token = strtok(NULL, "\n\t\a\r ");
 	}
-	/* free dlist and free buffer */
+	free_list(&h);
+	free(buffer);
 	close(fd);
 	return (0);
 }
