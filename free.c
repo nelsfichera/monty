@@ -1,21 +1,21 @@
 #include "monty.h"
 
-void free_node(void)
+void free_list(stack_t **head)
 {
-	free(info.cmd);
-	info.cmd = NULL;
-	free(info.arg);
-	info.arg = NULL;
-	fclose(info.fp);
-}
-void free_list(stack_t *stack)
-{
-	stack_t *node;
+	stack_t *hcopy;
+	stack_t *temp;
 
-	while(stack)
+	if (*head)
 	{
-		node = stack;
-		stack = stack->next;
-		free(node);
+		hcopy = *head;
+		*head = NULL;
+
+		while(hcopy->next)
+		{
+			temp = hcopy;
+			hcopy = hcopy->next;
+			free(temp);
+		}
+		free(hcopy);
 	}
 }
