@@ -9,12 +9,11 @@ stack_t *stack = NULL;
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *popper = *stack;
-	(void) line_number;
 
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		/* free_node(&stack); */
+		free_node(&stack); 
 	}
 	popper = popper->next;
 	free(*stack);
@@ -22,26 +21,33 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (popper != NULL)
 		popper->prev = NULL;
 }
-
 /**
 * push -  pushes an element into the bottom of the stack
 * @stack: head of the doubly linked list
 * @line_number: line count
 * Return: void
 */
-
 void push(stack_t **head, int n)
 {
 	stack_t *pusher_node;
-	/*add error handling here*/
-	pusher_node = malloc(sizeof(stack_t));
 
+	pusher_node = malloc(sizeof(stack_t));
+	if (pusher_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	pusher_node->n = n;
 	pusher_node->next = *head;
 	pusher_node->prev = NULL;
 	*head = pusher_node;
 }
-
+/**
+ 67 * get_func - gets functions!!!
+ 68 * @tokens: tokens for commands
+ 69 * @line_number: line number for failures
+ 70 * Return: void
+ 71 */
 int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 {
 	int push_num;
@@ -54,13 +60,18 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 		if (push_num != 0 || strcmp(push_data, "0") == 0)
 		{
 			push(&stack, push_num);
-			return (1);
+			return (EXER);
 		}
 	}
 	fprintf(stderr, "L%d: usage push integer\n", line_number);
 	exit(EXIT_FAILURE);
 }
-
+/**
+* get_func - gets functions!!!
+* @tokens: tokens for commands
+* @line_number: line number for failures
+* Return: void
+*/
 void get_func(char **tokens, unsigned int line_number)
 {
 	int x = 0;
@@ -70,6 +81,18 @@ void get_func(char **tokens, unsigned int line_number)
 	instruction_t commands[] = {
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", _add},
+		{"#", nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr}, 
 		{"", NULL}
 	};
 
@@ -82,7 +105,7 @@ void get_func(char **tokens, unsigned int line_number)
 	opcode_func = commands[x].f;
 	if (!opcode_func)
 	{
-		fprintf(stderr, "L%i:unknonw instruction %s\n", line_number, opcode);
+		fprintf(stderr, "L%i:unknown instruction %s\n", line_number, opcode);
 		exit(EXIT_FAILURE);
 	}
 	opcode_func(&stack, line_number);
