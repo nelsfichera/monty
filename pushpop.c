@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *stack = NULL;
 /**
 * pop -  removes the top element of the stack
 * @stack: head of the doubly linked list
