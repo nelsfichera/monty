@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *stack = NULL;
 /**
 * pop -  removes the top element of the stack
 * @stack: head of the doubly linked list
@@ -28,23 +29,33 @@ void pop(stack_t **stack, unsigned int line_number)
 * @line_number: line count
 * Return: void
 */
-void push(stack_t **stack, unsigned int line_number, const char *n)
-{
-	if (!stack)
-		return;
 
-	if (isdigit(n) != 0)
+void push(stack_t **head, int n)
+{
+	stack_t *pusher_node;
+	/*add error handling here*/ 
+	pusher_node = malloc(sizeof(stack_t));
+
+	pusher_node->n = n;
+	pusher_node->next = *head;
+	pusher_node->prev = NULL;
+	*head = pusher_node;
+}
+
+int nudge_push(char *opcode, char *push_data, unsigned int line_number)
+{
+	int push_num;
+
+	if (strcmp("push", opcode) != 0)
+		return (0);
+	if (push_data)
 	{
-		fprintf(stderr, "L%d: usage push integer\n", line_number);
-		/* free_list(*stack); */
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		if (add_dnodeint(stack, atoi(n)) == -1)
+		push_num = atoi(push_data);
+		if (push_num != 0 || strcmp(push_data, "0") == 0)
 		{
-			/* free */
-			exit(EXIT_FAILURE);
+			push(&stack, push_num);
+			return (1);
 		}
 	}
+	/* add error handling here*/
 }
