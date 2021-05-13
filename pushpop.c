@@ -59,3 +59,28 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 	}
 	/* add error handling here*/
 }
+void get_func(char **tokens, unsigned int line_number)
+{
+	int x = 0;
+	char *opcode = tokens[0], *push_arg = tokens[1];
+	void (*opcode_func)(*stack_t **, unsigned int);
+	instruction_t commands[] = {
+		{"pall", pall},
+		{"pint", pint},
+		{"", NULL}
+	};
+
+	if (!opcode)
+		return;
+	if (nudge_push(opcode, push_arg, line_number))
+		return;
+	while (commands[x].f && strcmp(commands[x].opcode, opcode) != 0)
+		x++;
+	opcode_func = commands[x].f;
+	if (!opcode_func)
+	{
+		fprintf(stderr, "L%i:unknonw instruction %s\n", line_number, opcode);
+		exit(EXIT_FAILURE);
+	}
+	opcode_func(&stack, line_number);
+}
