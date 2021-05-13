@@ -33,7 +33,7 @@ void pop(stack_t **stack, unsigned int line_number)
 void push(stack_t **head, int n)
 {
 	stack_t *pusher_node;
-	/*add error handling here*/ 
+	/*add error handling here*/
 	pusher_node = malloc(sizeof(stack_t));
 
 	pusher_node->n = n;
@@ -57,13 +57,16 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 			return (1);
 		}
 	}
-	/* add error handling here*/
+	fprintf(stderr, "L%d: usage push integer\n", line_number);
+	exit(EXIT_FAILURE);
 }
+
 void get_func(char **tokens, unsigned int line_number)
 {
 	int x = 0;
 	char *opcode = tokens[0], *push_arg = tokens[1];
-	void (*opcode_func)(*stack_t **, unsigned int);
+	void (*opcode_func)(stack_t **, unsigned int);
+
 	instruction_t commands[] = {
 		{"pall", pall},
 		{"pint", pint},

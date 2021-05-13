@@ -41,15 +41,17 @@ typedef struct instruction_s
 } instruction_t;
 
 /* main functions */
-void (*find_op_func(char *token))(stack_t **stack, unsigned int line_number);
+void get_func(char **tokens, unsigned int line_number);
 int main(int argc, char *argv[]);
 void free_list(stack_t **stack);
 void free_node(stack_t **stack);
 int add_dnodeint(stack_t **head, int n);
+int nudge_push(char *opcode, char *push_data, unsigned int line_number);
+size_t dlistint_len(const stack_t *h);
 /* opcode functions */
 void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-void push(stack_t **stack, unsigned int line_number, const char *n);
+void push(stack_t **head, int n);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);

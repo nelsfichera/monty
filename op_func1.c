@@ -1,6 +1,24 @@
 #include "monty.h"
 
 /**
+ * dlistint_len - find the number of elements in a linked dlistint_t list
+ * @h: header of the dlistint_t list
+ * Return: number of elements in the list
+ */
+
+size_t dlistint_len(const stack_t *h)
+{
+	size_t i = 0;
+
+	while (h)
+	{
+		i++;
+		h = h->next;
+	}
+	return (i);
+}
+
+/**
 * pall - prints every value in the stack
 * @stack: head of the doubly linked list
 * @line_number: line count
@@ -57,11 +75,11 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (check < 2)
 	{
 		fprintf(stderr, "L:%d: Stack too short to swap\n", line_number);
-		free_info();
+		free_list(stack);
 	}
 
 	index0 = *stack;
-	index1 = head->next;
+	index1 = h->next;
 	index0->next = index1->next;
 	index0->prev = index1;
 
