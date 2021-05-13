@@ -1,9 +1,18 @@
 #include "monty.h"
 
+/**
+ * free_node - frees a node
+ * @stack: header to the dlist
+ */
 void free_node(stack_t **stack)
 {
 	free(stack);
 }
+
+/**
+ * free_list - frees a dlist
+ * @stack: header to the dlist
+ */
 void free_list(stack_t **stack)
 {
 	stack_t *hcopy;
@@ -14,7 +23,7 @@ void free_list(stack_t **stack)
 		hcopy = *stack;
 		*stack = NULL;
 
-		while(hcopy->next)
+		while (hcopy->next)
 		{
 			temp = hcopy;
 			hcopy = hcopy->next;
