@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	int fd, is_push = 0;
 	char *buffer, *token;

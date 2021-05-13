@@ -5,10 +5,12 @@
  * @token: opcode token
  * Return: pointer to the correct operator function, otherwise NULL
  */
-int find_op_func(stack_t **stack, unsigned int line_number)
+void (*find_op_func(char *token))(stack_t **stack, unsigned int line_number)
 {
+	int i = 0;
+
 	/* using instruction_t struct to match opcode to function */
-	instruction_t command[] = {
+	instruction_t cmd[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
@@ -26,17 +28,12 @@ int find_op_func(stack_t **stack, unsigned int line_number)
 		* {"rotr", rotr}, */
 		{NULL, NULL}
 	};
-	int i = 0;
 
-	while ((command + i)->opcode)
+	while (cmd[i].opcode)
 	{
-		if (strcmp((command + i)->opcode, **argv) == 0)
-		{
-			(command + i)->f(stack, line_number);
-			return (0);
+		if (strcmp(token, cmd[i].opcode) == 0)
+			return (cmd[i].f);
 		i++;
 	}
-	return (1); 
-	/*needs error handler*/
-
+	return (NULL);
 }
