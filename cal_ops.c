@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * add - adds the top two elements of the stack
- * @stack: head of the doubly linked list
- * @line_number: line count
- * Return: void
- */
+* _add - adds the top two elements of the stack
+* @stack: head of the doubly linked list
+* @line_number: line count
+* Return: void
+*/
 void _add(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
@@ -24,11 +24,11 @@ void _add(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * sub - subtracts the top two elements of the stack
- * @stack: head of the doubly linked list
- * @line_number: line count
- * Return: void
- */
+* _sub - subtracts the top two elements of the stack
+* @stack: head of the doubly linked list
+* @line_number: line count
+* Return: void
+*/
 void _sub(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
@@ -47,11 +47,11 @@ void _sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - divides the top two elements of the stack
- * @stack: head of the doubly linked list
- * @line_number: line count
- * Return: void
- */
+* _div - divides the top two elements of the stack
+* @stack: head of the doubly linked list
+* @line_number: line count
+* Return: void
+*/
 void _div(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
@@ -76,11 +76,11 @@ void _div(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mul - multiplies the top two elements of the stack
- * @stack: head of the doubly linked list
- * @line_number: line count
- * Return: void
- */
+* _mul - multiplies the top two elements of the stack
+* @stack: head of the doubly linked list
+* @line_number: line count
+* Return: void
+*/
 void _mul(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
@@ -99,12 +99,12 @@ void _mul(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mod - calculates the the rest of the division of
- * the top two elements of the stack
- * @stack: head of the doubly linked list
- * @line_number: line count
- * Return: void
- */
+* _mod - calculates the the rest of the division of
+* the top two elements of the stack
+* @stack: head of the doubly linked list
+* @line_number: line count
+* Return: void
+*/
 void _mod(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack) || !(*stack)->next)
