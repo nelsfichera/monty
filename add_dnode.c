@@ -22,6 +22,23 @@ int add_dnodeint(stack_t **head, int n)
 	}
 
 	new_node->n = n;
+	if (*head == NULL)
+	{
+		*head = new_node;
+		new_node->next = NULL;
+		new_node->prev = NULL;
+	}
+	else
+	{
+		new_node->next = *head;
+		(*head)->prev = new_node;
+		*head = new_node;
+	}
+	return (0);
+
+	/**
+	 *
+	new_node->n = n;
 	new_node->next = *head;
 	new_node->prev = NULL;
 
@@ -29,5 +46,5 @@ int add_dnodeint(stack_t **head, int n)
 		(*head)->prev = new_node;
 	*head = new_node;
 
-	return (0);
+	return (0); */
 }

@@ -11,11 +11,10 @@ void (*find_op_func(char *token))(stack_t **stack, unsigned int line_number)
 
 	/* using instruction_t struct to match opcode to function */
 	instruction_t cmd[] = {
-		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		{"swap", swap},
+		/*{"swap", swap},*/
 		{"add", _add},
 		{"nop", nop},
 		{"sub", _sub},

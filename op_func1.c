@@ -46,7 +46,7 @@ void pint(stack_t **stack, unsigned int line_number)
 * @line_number: line count
 * Return: void
 */
-void swap(stack_t **stack, unsigned int line_number)
+/**void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h = *stack;
 	int check;
@@ -72,7 +72,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	index1->prev = NULL;
 	(*stack) = index1;
 }
-
+*/
 /**
 * nop - does nothing
 * @stack: head of the doubly linked list
