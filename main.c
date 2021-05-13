@@ -1,8 +1,13 @@
 #include "monty.h"
-
+/**
+* main - opens files, tokenizes input, creates commands
+* @argc: number of args
+* @argv: string of args
+* Return: exit success or failure
+*/
 int main(int argc, char **argv)
 {
-	FILE *fptr; /*is_push = 0;*/
+	FILE *fptr;
 	char *token[] = {NULL, NULL, NULL};
 	char *line = NULL;
 	size_t buffsize;
@@ -28,7 +33,7 @@ int main(int argc, char **argv)
 		token[0] = strtok(line, "\n\t\a\r ");
 		token[1] = strtok(NULL, "\n\t\a\r ");
 		get_func(token, line_count);
-		line_count++; /*maybe move to func file */
+		line_count++;
 		line_value = getline(&line, &buffsize, fptr);
 	}
 	return (EXIT_SUCCESS);

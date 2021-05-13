@@ -1,5 +1,4 @@
 #include "monty.h"
-stack_t *stack = NULL;
 /**
 * pop -  removes the top element of the stack
 * @stack: head of the doubly linked list
@@ -23,8 +22,8 @@ void pop(stack_t **stack, unsigned int line_number)
 }
 /**
 * push -  pushes an element into the bottom of the stack
-* @stack: head of the doubly linked list
-* @line_number: line count
+* @head: head of the doubly linked list
+* @n: data
 * Return: void
 */
 void push(stack_t **head, int n)
@@ -43,11 +42,12 @@ void push(stack_t **head, int n)
 	*head = pusher_node;
 }
 /**
- 67 * get_func - gets functions!!!
- 68 * @tokens: tokens for commands
- 69 * @line_number: line number for failures
- 70 * Return: void
- 71 */
+* nudge_push - helps push
+* @opcode: operator code for func
+* @push_data: data to be put into push
+* @line_number: number of line
+* Return: int
+*/
 int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 {
 	int push_num;
@@ -75,6 +75,7 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 void get_func(char **tokens, unsigned int line_number)
 {
 	int x = 0;
+	stack_t *stack = NULL;
 	char *opcode = tokens[0], *push_arg = tokens[1];
 	void (*opcode_func)(stack_t **, unsigned int);
 
@@ -91,8 +92,8 @@ void get_func(char **tokens, unsigned int line_number)
 		{"mod", _mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
-		/*{"rotl", rotl},
-		*{"rotr", rotr}, */
+		/*{"rotl", rotl},*/
+		/*{"rotr", rotr}, */
 		{"", NULL}
 	};
 
