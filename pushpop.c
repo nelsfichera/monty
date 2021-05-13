@@ -13,7 +13,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		free_node(&stack); 
+		/*free_list(&stack);*/
 	}
 	popper = popper->next;
 	free(*stack);
@@ -60,7 +60,7 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 		if (push_num != 0 || strcmp(push_data, "0") == 0)
 		{
 			push(&stack, push_num);
-			return (EXER);
+			return (1);
 		}
 	}
 	fprintf(stderr, "L%d: usage push integer\n", line_number);
@@ -91,8 +91,8 @@ void get_func(char **tokens, unsigned int line_number)
 		{"mod", _mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
-		{"rotl", rotl},
-		{"rotr", rotr}, 
+		/*{"rotl", rotl},
+		*{"rotr", rotr}, */
 		{"", NULL}
 	};
 
