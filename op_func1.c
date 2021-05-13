@@ -48,14 +48,13 @@ void pall(stack_t **stack, unsigned int line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h = *stack;
 
-	if (!h)
+	if (!stack || !*stack)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", h->n);
+	printf("%i\n", (*stack)->n);
 }
 
 /**
