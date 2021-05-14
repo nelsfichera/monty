@@ -26,18 +26,11 @@ size_t dlistint_len(const stack_t *h)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	/*needs error handling*/
-	int iter;
 	stack_t *node;
 	(void)line_number;
 
-	node = *stack;
-
-	for (iter = 0; node; iter++)
-	{
+	for (node = *stack; node; node = node->next)
 		fprintf(stdout, "%d\n", node->n);
-		node = node->next;
-	}
 }
 
 /**

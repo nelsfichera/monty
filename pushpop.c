@@ -85,7 +85,6 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 void get_func(char **tokens, unsigned int line_number)
 {
 	int x = 0;
-	stack_t *stack = NULL;
 	char *opcode = tokens[0], *push_arg = tokens[1];
 	void (*opcode_func)(stack_t **, unsigned int);
 
