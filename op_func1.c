@@ -74,7 +74,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (check < 2)
 	{
 		fprintf(stderr, "L:%d: Stack too short to swap\n", line_number);
-		free_list(stack);
+		free_stack(*stack);
 	}
 
 	index0 = *stack;

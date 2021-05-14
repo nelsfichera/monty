@@ -26,6 +26,7 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+extern stack_t *stack;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -42,9 +43,9 @@ typedef struct instruction_s
 
 /* main functions */
 void get_func(char **tokens, unsigned int line_number);
-int main(int argc, char *argv[]);
-void free_list(stack_t **stack);
-void free_node(stack_t **stack);
+int main(int argc, char **argv);
+void free_stack(stack_t *head);
+void free_all(char **buff_addy, FILE **bytecode_file);
 int add_dnodeint(stack_t **head, int n);
 int nudge_push(char *opcode, char *push_data, unsigned int line_number);
 size_t dlistint_len(const stack_t *h);

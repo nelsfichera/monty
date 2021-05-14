@@ -7,11 +7,11 @@
 void free_stack(stack_t *head)
 {
 	stack_t *node_x, *next;;
-	
+
 	for (node_x = head; node_x; node_x = next)
 	{
 		next = node_x->next;
-		free(node_x)
+		free(node_x);
 	}
 }
 /**
@@ -26,7 +26,7 @@ void free_all(char **buff_addy, FILE **bytecode_file)
 
 	if (buff_addy || bytecode_file)
 	{
-		line - buff_addy ? buff_addy : line;
+		line = buff_addy ? buff_addy : line;
 		bytecode = bytecode_file ? bytecode_file : bytecode;
 		return;
 	}
