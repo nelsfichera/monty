@@ -31,15 +31,24 @@ void push(stack_t **head, int n)
 {
 	stack_t *pusher_node;
 
+	if (!head)
+	{
+		fprintf(stderr, "push: Stack not found");
+		free_all(NULL, NULL);
+		exit(EXIT_FAILURE);
+	}
 	pusher_node = malloc(sizeof(stack_t));
 	if (pusher_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_all(NULL, NULL);
 		exit(EXIT_FAILURE);
 	}
 	pusher_node->n = n;
 	pusher_node->next = *head;
 	pusher_node->prev = NULL;
+	if(*head)
+		(*head)->prev = pusher_node;
 	*head = pusher_node;
 }
 /**
