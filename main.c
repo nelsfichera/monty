@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 		printf("Error: Can't open file %s\n", file_path);
 		exit(EXIT_FAILURE);
 	}
+	free_all(&line, &fptr);
 	line_value = getline(&line, &buffsize, fptr);
 	while (line_value != -1)
 	{
@@ -36,5 +37,6 @@ int main(int argc, char **argv)
 		line_count++;
 		line_value = getline(&line, &buffsize, fptr);
 	}
+	free_all(NULL, NULL);
 	return (EXIT_SUCCESS);
 }
