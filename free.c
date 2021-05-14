@@ -1,34 +1,36 @@
 #include "monty.h"
 
 /**
- * free_node - frees a node
- * @stack: header to the dlist
- */
-void free_node(stack_t **stack)
-{
-	free(stack);
-}
-
-/**
  * free_list - frees a dlist
- * @stack: header to the dlist
+ * @head: header to the dlist
  */
-void free_list(stack_t **stack)
+void free_stack(stack_t *head)
 {
-	stack_t *hcopy;
-	stack_t *temp;
-
-	if (*stack)
+	stack_t *node_x, *next;;
+	
+	for (node_x = head; node_x; node_x = next)
 	{
-		hcopy = *stack;
-		*stack = NULL;
-
-		while (hcopy->next)
-		{
-			temp = hcopy;
-			hcopy = hcopy->next;
-			free(temp);
-		}
-		free(hcopy);
+		next = node_x->next;
+		free(node_x)
 	}
+}
+/**
+* free_all - frees everything
+* @buff_addy: buffer from getline()
+* @bytecode_file: open bytecode file
+*/
+void free_all(char **buff_addy, FILE **bytecode_file)
+{
+	static char **line;
+	static FILE **bytecode;
+
+	if (buff_addy || bytecode_file)
+	{
+		line - buff_addy ? buff_addy : line;
+		bytecode = bytecode_file ? bytecode_file : bytecode;
+		return;
+	}
+	fclose(*bytecode);
+	free(*line);
+	free_stack(stack);
 }
