@@ -102,7 +102,7 @@ void get_func(char **tokens, unsigned int line_number)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
-		/*{"rotr", rotr}, */
+		{"rotr", rotr},
 		{"", NULL}
 	};
 
