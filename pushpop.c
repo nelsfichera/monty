@@ -94,7 +94,7 @@ void get_func(char **tokens, unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", _add},
-		{"#", nop},
+		{"nop", nop},
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
