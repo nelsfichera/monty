@@ -47,7 +47,7 @@ void push(stack_t **head, int n)
 	pusher_node->n = n;
 	pusher_node->next = *head;
 	pusher_node->prev = NULL;
-	if(*head)
+	if (*head)
 		(*head)->prev = pusher_node;
 	*head = pusher_node;
 }
@@ -73,7 +73,7 @@ int nudge_push(char *opcode, char *push_data, unsigned int line_number)
 			return (1);
 		}
 	}
-	fprintf(stderr, "L%d: usage push integer\n", line_number);
+	fprintf(stderr, "L%d: usage: push integer\n", line_number);
 	exit(EXIT_FAILURE);
 }
 /**
@@ -115,7 +115,7 @@ void get_func(char **tokens, unsigned int line_number)
 	opcode_func = commands[x].f;
 	if (!opcode_func)
 	{
-		fprintf(stderr, "L%i:unknown instruction %s\n", line_number, opcode);
+		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, opcode);
 		exit(EXIT_FAILURE);
 	}
 	opcode_func(&stack, line_number);

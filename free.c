@@ -1,12 +1,13 @@
 #include "monty.h"
 
 /**
- * free_list - frees a dlist
+ * free_stack - frees a dlist
  * @head: header to the dlist
  */
 void free_stack(stack_t *head)
 {
-	stack_t *node_x, *next;;
+	stack_t *node_x;
+	stack_t *next;
 
 	for (node_x = head; node_x; node_x = next)
 	{
